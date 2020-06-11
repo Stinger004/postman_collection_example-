@@ -22,7 +22,7 @@
 					],
 					"query": [
 						{
-							"key": "myparameter",
+							"key": "Myparameter",
 							"value": "1"
 						},
 						{
