@@ -1,0 +1,163 @@
+{
+	"info": {
+		"_postman_id": "324ada85-d746-49e1-8fcc-7172e6ea34f6",
+		"name": "Udemy_practice",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://httpbin.org/get?myparameter=1&myparameter2=whatever&myparameter3=cool",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"get"
+					],
+					"query": [
+						{
+							"key": "myparameter",
+							"value": "1"
+						},
+						{
+							"key": "myparameter2",
+							"value": "whatever"
+						},
+						{
+							"key": "myparameter3",
+							"value": "cool"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "uuid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ea3e376a-631c-4e9d-9cac-e2b4b6e5a782",
+						"exec": [
+							"let response = pm.response.json();",
+							"pm.globals.set(\"uuid\", response.uuid);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://httpbin.org/uuid",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"uuid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"jhon\",\n\t\"email\":\"xyz@gmial.com\",\n\t\"id\":\"{{uuid}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://httpbin.org/post",
+					"protocol": "https",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/api/users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://www.mocky.io/v2/5ab34d8c2f00006600ca3652",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "09ba8da7-4957-4e54-93bd-95bbab4d8d22",
+						"exec": [
+							"let jsonData = pm.response.json();",
+							"let commentstatus = jsonData.prefs.comments.status;",
+							"console.log(jsonData.prefs.comments.status);",
+							"",
+							"pm.test(\"comments should be disable\", function(){",
+							"    pm.expect(commentstatus).to.eql(\"disabled\");",
+							"})",
+							"",
+							"",
+							"console.log(jsonData.limits['54bba24af6196bd5f824e563'].boards.totalPerMember.status);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://www.mocky.io/v2/5ab34d8c2f00006600ca3652",
+					"protocol": "http",
+					"host": [
+						"www",
+						"mocky",
+						"io"
+					],
+					"path": [
+						"v2",
+						"5ab34d8c2f00006600ca3652"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
